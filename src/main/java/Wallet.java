@@ -1,6 +1,6 @@
 public class Wallet {
     Money money;
-    static double balance = 0;
+    static double minBalance = 100;
 
     public Wallet(Money money) {
         this.money = money;
@@ -20,6 +20,19 @@ public class Wallet {
 
         return money.amount == that.money.amount;
 
+    }
+
+    public double creditAmountToWallet(){
+        if(money.amount>0)
+        minBalance = minBalance +money.amount;
+        return minBalance;
+    }
+
+    public double debitAmountFromWallet() throws InsufficientBalanceException {
+        if(minBalance ==0.0)
+            throw new InsufficientBalanceException("No Sufficient Balance");
+        minBalance = minBalance -money.amount;
+        return minBalance;
     }
 
 }

@@ -4,6 +4,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
 
+
 public class WalletTest {
     @Test
     void ShouldEquate74Point85ToOneDollar() {
@@ -22,6 +23,29 @@ public class WalletTest {
         Wallet oneDollar = new Wallet(new Money(1, Currency.getInstance("USD")));
 
         assertThat(oneDollar, is(equalTo(seventyFourPointEightRiveRupees)));
+
+    }
+
+    @Test
+    void ShouldCreditAmountToWallet() {
+        Money seventy_four_point_eight_five_rupees = new Money(74.85, Currency.getInstance("INR"));
+        Wallet moneyToBeCredited = new Wallet(seventy_four_point_eight_five_rupees);
+
+        double new_balance = moneyToBeCredited.creditAmountToWallet();
+
+        assertThat(Wallet.minBalance, is(equalTo(new_balance)));
+
+    }
+
+
+    @Test
+    void ShouldDebitFromWallet() throws InsufficientBalanceException {
+        Money thirty_five_rupees = new Money(35, Currency.getInstance("INR"));
+        Wallet moneyToBeDebited = new Wallet(thirty_five_rupees);
+
+        double new_balance = moneyToBeDebited.debitAmountFromWallet();
+
+        assertThat(Wallet.minBalance, is(equalTo(new_balance)));
 
     }
 
