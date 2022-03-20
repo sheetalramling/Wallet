@@ -28,8 +28,8 @@ public class WalletTest {
 
     @Test
     void ShouldCreditAmountToWallet() {
-        Money seventy_four_point_eight_five_rupees = new Money(74.85, Currency.getInstance("INR"));
-        Wallet moneyToBeCredited = new Wallet(seventy_four_point_eight_five_rupees);
+        Money seventyFourPointEightRiveRupees = new Money(74.85, Currency.getInstance("INR"));
+        Wallet moneyToBeCredited = new Wallet(seventyFourPointEightRiveRupees);
 
         double new_balance = moneyToBeCredited.creditAmountToWallet();
 
@@ -40,8 +40,8 @@ public class WalletTest {
 
     @Test
     void ShouldDebitFromWallet() throws InsufficientBalanceException {
-        Money thirty_five_rupees = new Money(35, Currency.getInstance("INR"));
-        Wallet moneyToBeDebited = new Wallet(thirty_five_rupees);
+        Money thirtyFiveRupees = new Money(35, Currency.getInstance("INR"));
+        Wallet moneyToBeDebited = new Wallet(thirtyFiveRupees );
 
         double new_balance = moneyToBeDebited.debitAmountFromWallet();
 
