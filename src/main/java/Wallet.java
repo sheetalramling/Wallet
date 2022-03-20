@@ -52,12 +52,12 @@ public class Wallet {
 
     }
 
-    public double creditAmountToWallet() {
+    public double addMoneyToWallet() {
         if (money.amount > 0) balance = balance + money.amount;
         return balance;
     }
 
-    public double debitAmountFromWallet() throws InsufficientBalanceException {
+    public double takeMoneyFromWallet() throws InsufficientBalanceException {
         if (balance == 0.0) throw new InsufficientBalanceException("No Sufficient Balance");
         balance = balance - money.amount;
         return balance;

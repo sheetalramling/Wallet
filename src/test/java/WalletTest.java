@@ -1,14 +1,14 @@
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.util.Currency;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class WalletTest {
     @Test
-    void ShouldEquate74Point85ToOneDollar() {
+    void shouldEquate74Point85ToOneDollar() {
 
         Wallet seventyFourPointEightRiveRupees = new Wallet(new Money(74.85, Currency.getInstance("INR")));
         Wallet oneDollar = new Wallet(new Money(1, Currency.getInstance("USD")));
@@ -18,7 +18,7 @@ public class WalletTest {
     }
 
     @Test
-    void ShouldEquateOneDollarTo74Point85() {
+    void shouldEquateOneDollarTo74Point85() {
 
         Wallet seventyFourPointEightRiveRupees = new Wallet(new Money(74.85, Currency.getInstance("INR")));
         Wallet oneDollar = new Wallet(new Money(1, Currency.getInstance("USD")));
@@ -28,42 +28,30 @@ public class WalletTest {
     }
 
     @Test
-    void ShouldCreditAmountToWallet() {
+    void shouldAddMoneyToWallet() {
         Money seventyFourPointEightRiveRupees = new Money(74.85, Currency.getInstance("INR"));
         Wallet moneyToBeCredited = new Wallet(seventyFourPointEightRiveRupees);
 
-        double new_balance = moneyToBeCredited.creditAmountToWallet();
+        double new_balance = moneyToBeCredited.addMoneyToWallet();
 
-        assertThat(Wallet.balance, is(equalTo(new_balance)));
+        assertEquals(74.85, new_balance);
 
     }
 
 
+
     @Test
-    void ShouldDebitFromWallet() throws InsufficientBalanceException {
+    void ShouldThrowInsufficientException() throws InsufficientBalanceException {
         Money thirtyFiveRupees = new Money(35, Currency.getInstance("INR"));
-        Wallet moneyToBeDebited = new Wallet(thirtyFiveRupees );
+        Wallet moneyToBeDebited = new Wallet(thirtyFiveRupees);
 
-        double new_balance = moneyToBeDebited.debitAmountFromWallet();
-
-        assertThat(Wallet.balance, is(equalTo(new_balance)));
-
-
-
+        assertThrows(InsufficientBalanceException.class, moneyToBeDebited::takeMoneyFromWallet);
 
     }
-//    @Test
-//    void ShouldThrowInsufficientException() throws InsufficientBalanceException {
-//        Money thirtyFiveRupees = new Money(35, Currency.getInstance("INR"));
-//        Wallet moneyToBeDebited = new Wallet(thirtyFiveRupees);
-//
-//        assertThrows(InsufficientBalanceException.class, moneyToBeDebited::debitAmountFromWallet);
-//
-//    }
 
 
     @Test
-    void ShouldDisplayAmountInPreferredCurrency() {
+    void shouldDisplayAmountInPreferredCurrencyForTwoMoneyValues() {
         Money[] moneyInDifferentCurrencies={new Money(50,Currency.getInstance("INR")),new Money(1,Currency.getInstance("USD"))};
         Wallet multipleCurrencies=new Wallet(moneyInDifferentCurrencies) ;
 
@@ -74,7 +62,7 @@ public class WalletTest {
     }
 
     @Test
-    void ShouldDisplayAmountInPreferredCurrency1() {
+    void shouldDisplayAmountInPreferredCurrencyForThreeMoneyValues() {
         Money[] moneyInDifferentCurrencies={new Money(74.85,Currency.getInstance("INR")),new Money(1,Currency.getInstance("USD")), new Money(149.7,Currency.getInstance("INR"))};
         Wallet multipleCurrencies=new Wallet(moneyInDifferentCurrencies) ;
 
