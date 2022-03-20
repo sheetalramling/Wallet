@@ -32,9 +32,9 @@ public class WalletTest {
         Money seventyFourPointEightRiveRupees = new Money(74.85, Currency.getInstance("INR"));
         Wallet moneyToBeCredited = new Wallet(seventyFourPointEightRiveRupees);
 
-        double new_balance = moneyToBeCredited.addMoneyToWallet();
+        double newBalance = moneyToBeCredited.addMoneyToWallet();
 
-        assertEquals(74.85, new_balance);
+        assertEquals(74.85, newBalance);
 
     }
 

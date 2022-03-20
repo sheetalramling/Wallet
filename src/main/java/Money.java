@@ -10,16 +10,14 @@ public class Money {
         this.amount = amount;
     }
 
-    public double RupeeToDollarConverter() {
+    public double rupeeToDollarConverter() {
 
-        double convertedAmount = amount / RUPEE;
-        return convertedAmount;
+        return amount / RUPEE;
     }
 
-    public double DollarToRupeeConverter() {
+    public double dollarToRupeeConverter() {
 
-        double convertedAmount = amount * RUPEE;
-        return convertedAmount;
+        return amount * RUPEE;
     }
 
 

@@ -2,9 +2,10 @@ import java.util.Currency;
 
 public class Wallet {
     Money money;
-    static double balance = 0;
     Money[] moneyInMultipleCurrencies;
-
+    static double balance ;
+    static double moneyInOtherCurrency;
+    static double moneyInPreferredCurrency;
 
     public Wallet(Money money) {
         this.money = money;
@@ -16,7 +17,7 @@ public class Wallet {
     }
 
     public double checkBalance(Money[] moneyInMultipleCurrencies, Currency preferredCurrency) {
-        double moneyInPreferredCurrency = 0, moneyInOtherCurrency = 0;
+
         for (Money money : moneyInMultipleCurrencies) {
 
             if (money.currency.getCurrencyCode().equals(preferredCurrency.getCurrencyCode())) {
@@ -24,10 +25,10 @@ public class Wallet {
 
             } else {
                 if (money.currency.getCurrencyCode().equals("USD")) {
-                    moneyInOtherCurrency = money.DollarToRupeeConverter();
+                    moneyInOtherCurrency = money.dollarToRupeeConverter();
                 }
                 if (money.currency.getCurrencyCode().equals("INR")) {
-                    moneyInOtherCurrency = money.RupeeToDollarConverter();
+                    moneyInOtherCurrency = money.rupeeToDollarConverter();
                 }
             }
 
@@ -45,8 +46,8 @@ public class Wallet {
 
         Wallet that = (Wallet) o;
 
-        if (money.currency.getCurrencyCode().equals("INR")) money.amount = money.RupeeToDollarConverter();
-        if (money.currency.getCurrencyCode().equals("USD")) money.amount = money.DollarToRupeeConverter();
+        if (money.currency.getCurrencyCode().equals("INR")) money.amount = money.rupeeToDollarConverter();
+        if (money.currency.getCurrencyCode().equals("USD")) money.amount = money.dollarToRupeeConverter();
 
         return money.amount == that.money.amount;
 
