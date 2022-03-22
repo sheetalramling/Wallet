@@ -3,20 +3,19 @@ import java.util.Currency;
 public class Wallet {
     Money money;
     Money[] moneyInMultipleCurrencies;
-    static double balance ;
-    static double moneyInOtherCurrency;
-    static double moneyInPreferredCurrency;
+    private  double balance = 100;
+    private static double moneyInPreferredCurrency;
+    private static double moneyInOtherCurrency;
 
     public Wallet(Money money) {
         this.money = money;
-
     }
 
     public Wallet(Money[] moneyInMultipleCurrencies) {
         this.moneyInMultipleCurrencies = moneyInMultipleCurrencies;
     }
 
-    public double checkBalance(Money[] moneyInMultipleCurrencies, Currency preferredCurrency) {
+    public double checkBalanceInPreferredCurrency(Money[] moneyInMultipleCurrencies, Currency preferredCurrency) {
 
         for (Money money : moneyInMultipleCurrencies) {
 
@@ -31,37 +30,29 @@ public class Wallet {
                     moneyInOtherCurrency = money.rupeeToDollarConverter();
                 }
             }
-
             moneyInPreferredCurrency = moneyInPreferredCurrency + moneyInOtherCurrency;
-        }
 
+        }
         return moneyInPreferredCurrency;
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Wallet that = (Wallet) o;
-
-        if (money.currency.getCurrencyCode().equals("INR")) money.amount = money.rupeeToDollarConverter();
-        if (money.currency.getCurrencyCode().equals("USD")) money.amount = money.dollarToRupeeConverter();
-
-        return money.amount == that.money.amount;
-
-    }
-
     public double addMoneyToWallet() {
-        if (money.amount > 0) balance = balance + money.amount;
+        if (money.amount > 0)
+            if (money.currency.getCurrencyCode().equals("USD"))
+                money.amount = money.dollarToRupeeConverter();
+        balance = balance + money.amount;
         return balance;
     }
 
     public double takeMoneyFromWallet() throws InsufficientBalanceException {
-        if (balance == 0.0) throw new InsufficientBalanceException("No Sufficient Balance");
+
         balance = balance - money.amount;
-        return balance;
+        System.out.println(balance);
+        if (balance <= 0)
+            throw new InsufficientBalanceException("No Sufficient Balance");
+        else
+            return balance;
     }
 
 }

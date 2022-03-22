@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="WalletTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2022-03-20T17:41:53" hostname="Sheetals-MacBook-Pro.local" time="0.032">
+<testsuite name="WalletTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2022-03-22T18:31:05" hostname="Sheetals-MacBook-Pro.local" time="0.051">
   <properties/>
-  <testcase name="shouldEquateOneDollarTo74Point85()" classname="WalletTest" time="0.022"/>
-  <testcase name="shouldEquate74Point85ToOneDollar()" classname="WalletTest" time="0.0"/>
-  <testcase name="ShouldThrowInsufficientException()" classname="WalletTest" time="0.003"/>
-  <testcase name="shouldDisplayAmountInPreferredCurrencyForTwoMoneyValues()" classname="WalletTest" time="0.001"/>
-  <testcase name="shouldDisplayAmountInPreferredCurrencyForThreeMoneyValues()" classname="WalletTest" time="0.0"/>
+  <testcase name="shouldEquateOneDollarTo74Point85()" classname="WalletTest" time="0.03"/>
+  <testcase name="shouldEquate74Point85ToOneDollar()" classname="WalletTest" time="0.001"/>
+  <testcase name="shouldDisplayAmountInPreferredCurrencyForTwoMoneyValues()" classname="WalletTest" time="0.006"/>
+  <testcase name="ShouldDebitMoneyFromAccount()" classname="WalletTest" time="0.005"/>
+  <testcase name="shouldDisplayAmountInPreferredCurrencyForThreeMoneyValues()" classname="WalletTest" time="0.001"/>
   <testcase name="shouldAddMoneyToWallet()" classname="WalletTest" time="0.001"/>
-  <system-out><![CDATA[]]></system-out>
+  <system-out><![CDATA[65.0
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
